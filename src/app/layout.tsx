@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import FloatButton from "@/components/FloatButton";
+import {Providers} from "@/app/providers";
+import Message from "@/components/Message";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,8 +18,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+      <html lang="zh" suppressHydrationWarning>
+      <body className={inter.className}>
+      <Providers themeProps={{ attribute: "class", defaultTheme: "auto"}}>
+        {children}
+        <Message/>
+        <FloatButton/>
+      </Providers>
+      </body>
+      </html>
   )
 }
